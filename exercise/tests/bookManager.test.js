@@ -35,7 +35,7 @@ implementing it.
 The function should update the title of a book.
 
  */
-const { addBook, updateBookTitle, books } = require("../bookManager");
+const { addBook, updateBookTitle, books, removeBook } = require("../bookManager");
 
 
 test("updates book title from oldTitle to newTitle", () => {
@@ -51,4 +51,37 @@ test("updateBookTitle should throw an error if the book does not exist", () => {
     expect(() => updateBookTitle("non title", "any title")).toThrow(
         "Book not found"
     );
+});
+
+/**Exercise 4:
+
+Question: 
+
+Write a simple unit test using Jest's `test` and 
+expect functions to test `addBook`. */
+
+test("does addbook add book title and author", () => {
+    const newbook = addBook("Dungeon Crawler Carl", "Matt Dinniman");
+    expect(newbook).toEqual({title: "Dungeon Crawler Carl", author: "Matt Dinniman"});
+    expect(books).toContainEqual(newbook)
+})
+
+/** Exercise 5:
+
+Question: 
+
+Use different matchers to test `removeBook`, 
+including the case where the book is not found.*/
+
+test("does removeBook remove a book from the books collection", () => {
+    const testBook = addBook("chicka chicka boom boom", "dad");
+    
+    expect(testBook).toEqual({title: "chicka chicka boom boom", author: "dad"});
+    expect(books).toContainEqual(testBook);
+    const removedBook = removeBook(testBook.title)
+    expect(removedBook.title).toBe("chicka chicka boom boom");
+})  
+
+test("does removeBook throw an error when used on a book not in the collection", () => {
+    expect(() => removeBook("abc")).toThrow("Book not found");
 });
