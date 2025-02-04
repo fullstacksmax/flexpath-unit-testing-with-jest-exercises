@@ -18,6 +18,13 @@ const findBooksByAuthor = (author) => {
   return books.filter((book) => book.author === author);
 };
 
+const updateBookTitle = (oldTitle, newTitle) => {
+  const book = books.find((book) => book.title === oldTitle);
+  if (!book) throw new Error("Book not found");
+  book.title = newTitle;
+  return book;
+};
+
 const loadBooks = () => {
   return new Promise((resolve, reject) => {
     fs.readFile("books.json", "utf8", (err, data) => {
@@ -45,5 +52,6 @@ module.exports = {
   findBooksByAuthor,
   loadBooks,
   saveBooks,
+  updateBookTitle,
   books,
 };
