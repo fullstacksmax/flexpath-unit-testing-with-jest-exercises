@@ -1,3 +1,5 @@
+//npm install jest --save-dev
+
 /**
 
 Exercise 1:
