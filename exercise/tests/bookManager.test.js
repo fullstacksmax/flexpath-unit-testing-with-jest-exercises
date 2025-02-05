@@ -37,6 +37,25 @@ The function should update the title of a book.
  */
 const { addBook, updateBookTitle, books, removeBook } = require("../bookManager");
 
+beforeAll(() => {
+    books.length = 0;
+})
+
+afterAll(() => {
+    books.length = 0;
+})
+
+beforeEach(() => {
+    books.length = 0;
+
+})
+
+afterEach(() => {
+    books.length = 0;
+
+})
+
+
 describe("updateBookTitle" , () => {
     test("updates book title from oldTitle to newTitle", () => {
         addBook("ender's game", "card")
