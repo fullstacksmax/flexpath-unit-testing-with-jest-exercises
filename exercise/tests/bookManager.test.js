@@ -35,7 +35,7 @@ implementing it.
 The function should update the title of a book.
 
  */
-const { addBook, updateBookTitle, books, removeBook } = require("../bookManager");
+const { addBook, updateBookTitle, books,  removeBook } = require("../bookManager");
 
 beforeAll(() => {
     books.length = 0;
@@ -143,7 +143,7 @@ describe("toEqual & toStrictEqual" , () => {
 
     })
     test("toBeEqual" , () => {
-        expect(a).toStrictEqual(b);
+        expect(a).not.toStrictEqual(b);
 
     })
 })
@@ -152,7 +152,21 @@ describe("toBe", () => {
     const c = [1,2]
     const d = [1,2]
     test("toBe", () => {
-    expect(c).toBe(d);
+    expect(c).not.toBe(d);
 
     })
 })
+
+/* describe("writeFile mock", () => {
+    
+        const writeMock = () => {jest.fn(writeFile("books.json", JSON.stringify(books), "utf8", (err) => {
+              if (err) reject(err);
+              else resolve();
+ } ))}
+            expect(writeMock).toHaveBeenCalled();
+    }) */
+    
+
+
+
+
